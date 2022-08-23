@@ -20,18 +20,18 @@ $(document).ready(function(){
 
 
 	$("#btnCamps").bind("click", function(){
-		//mostrarCamps();
-		//window.setTimeout(function(){
-		//	amagarColumnaTaula("taula_camps", 5)	// columna boto "par"
-		//	amagarColumnaTaula("taula_camps", 6)	// columna boto "eliminar"
-		//	$("#btnEditarCamps").show();
-		//	$("#btnFetCamps").hide();
+		mostrarCamps();
+		window.setTimeout(function(){
+			amagarColumnaTaula("taula_camps", 5)	// columna boto "par"
+			amagarColumnaTaula("taula_camps", 6)	// columna boto "eliminar"
+			$("#btnEditarCamps").show();
+			$("#btnFetCamps").hide();
 
-		//	$("body").pagecontainer("change", "#pagina_camps");
+			$("body").pagecontainer("change", "#pagina_camps");
 			$.mobile.changePage("#pagina_camps",{"transition": "slide"});
-		//}, 
-		//250
-		//);
+		}, 
+		250
+		);
 		
 
 		return false;

@@ -1126,7 +1126,7 @@ function updateCacheContent(event) {
 }
 
 $(document).ready(function () {
-    window.applicationCache.addEventListener('updateready', updateCacheContent, false);
+    window.addEventListener('updateready', updateCacheContent, false);
 
     initDatabase();
 });
