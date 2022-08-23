@@ -1,0 +1,418 @@
+<html>
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="css/jquery.mobile-1.4.3.min.css" />
+	<link rel="stylesheet" href="css/themes/theme-personalitzat.min.css" />
+	<link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="css/themes/jquery.mobile.structure-1.4.3.min.css" />
+	
+	<link rel="stylesheet" href="css/comu.css" />
+	<link rel="stylesheet" type="text/css" media="screen and (max-width: 800px)" href="css/tablets.css" />  <!-- Tablets --> 
+	<link rel="stylesheet" type="text/css" media="screen and (max-width: 400px)" href="css/smartphones.css" />  <!-- Smartphones --> 
+
+
+	<script src="cordova.js"></script>
+	<script src="phonegap.js"></script>
+	
+	<script src="js/jquery-1.11.1.js"></script>
+	<script src="js/jquery.validate.js"></script>
+	<script src="js/jquery.mobile-1.4.3.min.js"></script>
+	<script src="js/principal.js"></script>
+	<script src="js/model.js"></script>
+
+</head>
+<body>
+
+
+
+	
+
+	<!-- pagina PRINCIPAL -->
+	<div data-role="page" id="pagina_principal" data-theme="a">
+
+		<div data-role="header">
+			<a href="#" data-role="button" data-icon="power" id="btnSortir" data-inline="true">Sortir</a>
+			<h1>Puntuació Golf</h1>
+		</div><!-- /header -->
+
+		<div data-role="main" class="ui-content">
+			<p><a href="#" id="btnCamps" data-role="button">CAMPS</a></p>
+			<p><a href="#pagina_instruccions" data-role="button">Instruccions</a></p>
+			<!-- <p><a href="#" id="btnDropTaules" data-role="button">DROP taules</a></p> -->
+		</div><!-- /content -->
+
+		<!-- <div data-role="footer"> -->
+			<!-- <h4>Page Footer</h4> -->
+		<!-- </div> --><!-- /footer -->
+	</div><!-- /page -->
+
+
+
+
+
+
+
+
+
+
+
+	<!-- pagina DROP TAULES -->
+	<div data-role="page" id="pagina_drop_taules" data-theme="a">
+
+		<div data-role="header">
+			<h1>Drop Taules</h1>
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#pagina_principal">Inici</a></li>
+				</ul>
+			</div>
+		</div><!-- /header -->
+
+		<div data-role="main" class="ui-content">
+			<p><button id="btnDropTaulaCamps" class="ui-btn">DROP taula Camps</button></p>
+			<p><button id="btnDropTaulaCampsParForats" class="ui-btn">DROP taula CampsParForats</button></p>
+			<p><button id="btnDropTaulaPartides" class="ui-btn">DROP taula Partides</button></p>
+			<p><button id="btnDropTaulaCops" class="ui-btn">DROP taula Cops</button></p>
+		</div><!-- /content -->
+
+		<div data-role="footer">
+			<!-- <h4>Page Footer</h4> -->
+		</div><!-- /footer -->
+	</div><!-- /page -->
+
+
+
+
+
+
+
+
+	<!-- pagina CAMPS -->
+	<div data-role="page" id="pagina_camps" data-theme="a">
+
+		<div data-role="header" data-position="inline">
+			<a href="#pagina_principal" data-role="button" id="btnInici" data-icon="home" data-transition="slide" data-direction="reverse" class="ui-btn-left">Inici</a>
+			<h1>Camps</h1>
+			<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right grupBotons">
+				<a href="#" data-role="button" id="btnEditarCamps" data-icon="gear" data-inline="true">Editar</a>
+				<a href="#" data-role="button" id="btnFetCamps" data-icon="check" data-inline="true">Fet</a>
+				<a href="#pagina_nouCamp" id="btnNouCamp" data-role="button" data-inline="true" data-icon="plus">Afegir</a>
+			</div>
+		</div><!-- /header -->
+
+		<div data-role="main" class="ui-content">
+			
+			<table id="taula_camps">
+				<thead>
+					<tr>
+						<!-- <th>codi</th> -->
+						<th>Camp</th>
+						<th>Forats</th>
+						<th>Par</th>
+						<th></th> <!-- Boto "Par": informar el par de cada forat -->
+						<th></th> <!-- Boto "Eliminar": elimina el camp (tb les partides i el par de cada forat) -->
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+
+
+		</div><!-- /content -->
+
+	</div><!-- /page -->
+
+
+
+
+
+
+
+
+
+	<!-- pagina NOU CAMP -->
+	<div data-role="dialog" id="pagina_nouCamp" data-theme="a">
+
+		<div data-role="header">
+			<h1>Nou camp</h1>
+		</div><!-- /header -->
+
+		<form id="forumalri_nouCamp" method="get" action="">
+			<div data-role="main" class="ui-content">
+					<fieldset>
+						<table>
+							<tr><td>Camp</td><td><input type="text" id="formNomCamp" name="camp" value="" /></td></tr>
+							<tr><td>Forats</td><td><input type="number" id="formForats" name="forats" value=""/></td></tr>
+						</table>
+					</fieldset>
+			</div><!-- /content -->
+
+			<div data-role="footer">
+				<a href="#" data-rel="back" data-role="button">Cancelar</a>
+				<!-- <a href="#" data-role="button" id="btCrearCamp">Crear</a> -->
+				<input class="submit" type="submit" id="btCrearCamp" value="crear">
+			</div><!-- /footer -->
+		</form>
+	</div><!-- /page -->
+
+
+
+
+
+
+
+	<!-- pagina PREGUNTA SI ES VOL INFORMAR EL PAR DE CADA FORAT DEL NOU CAMP -->
+	<div data-role="dialog" id="pagina_preguntaInformarPar" data-theme="a">
+
+		<div data-role="header">
+			<h1>Pregunta</h1>
+		</div><!-- /header -->
+
+		<div data-role="main" class="ui-content">
+			<p>Vols informar ARA el par de cada forat d'aquest nou camp?</p>
+		</div><!-- /content -->
+
+		<div data-role="footer">
+			<a href="#pagina_camps" data-role="button">No</a>
+			<a href="#" id="informarPar" data-role="button">Si</a>
+		</div><!-- /footer -->
+	</div><!-- /page -->
+
+
+
+
+
+
+
+
+	<!-- pagina PAR DE CADA FORAT DEL CAMP SELECCIONAT -->
+	<div data-role="page" id="pagina_parforatscamp" data-theme="a">
+
+		<div data-role="header">
+			<a href="#pagina_camps" id="btCamps" data-transition="slide" data-direction="reverse">Camps</a>
+			<h1>Forat - Par</h1>
+		</div><!-- /header -->
+
+		<div data-role="main" class="ui-content">
+
+			<table id="taula_capsaleraParForatsCampSeleccionat" class="cssTaulesCapsalera">
+				<tbody></tbody>
+			</table>
+			
+			<table id="taula_ForatsParCamp">
+				<thead>
+					<tr>
+						<th>Forat</th>
+						<th colspan="2">Par</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+
+		</div><!-- /content -->
+
+		<div data-role="footer">
+			<!-- <h4>Page Footer</h4> -->
+		</div><!-- /footer -->
+	</div><!-- /page -->
+
+	
+
+
+
+
+	<!-- pagina PARTIDES DEL CAMP SELECCIONAT -->
+	<div data-role="page" id="pagina_partitscamp" data-theme="a">
+
+		<div data-role="header">
+			<a href="#pagina_camps" id="btnCamps2" data-transition="slide" data-direction="reverse" class="ui-btn-left" data-icon="arrow-l" data-mini="true">Camps</a>
+			<h1>Partits</h1>
+			<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
+				<a href="#" data-role="button" id="btnEditarPartidesCamp" data-icon="minus">Eliminar</a>
+				<a href="#" data-role="button" id="btnFetPartidesCamp" data-icon="check">Fet</a>
+				<a href="#pagina_nova_partida" id="btnNovaPartidaCamp" data-role="button" data-icon="plus">Afegir</a>
+			</div>
+		</div><!-- /header -->
+
+		<div data-role="main" class="ui-content">
+
+			<table id="taula_capsaleraPartidesCampSeleccionat" class="cssTaulesCapsalera">
+				<tbody></tbody>
+			</table>
+			
+			<table id="taula_PartidesCampSeleccionat">
+				<thead>
+					<tr>
+						<!-- <th>codiPartida</th> -->
+						<th>Data</th>
+						<th># Partit</th>
+						<th>Par</th>
+						<th>Cops</th>
+						<th>Dif</th>
+						<th>Eliminar</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+
+		</div><!-- /content -->
+
+	</div><!-- /page -->
+
+	
+
+
+	<!-- pagina NOVA PARTIDA -->
+	<div data-role="dialog" id="pagina_nova_partida" data-theme="a">
+
+		<div data-role="header">
+			<h1>NOU PARTIT</h1>
+		</div><!-- /header -->
+
+		<form id="formulariNovaPartida">
+			<div data-role="main" class="ui-content">
+				<p> Data de la partida</p>
+				<table id="taula_cops">
+					<tr><td>Data</td><td><input type="date" id="formData" name="Data"/></td></tr>
+					<!-- <tr><td>idCamp</td><td><select type="text" id="formIdCamp"></select></td></tr> -->
+				</table>
+			</div><!-- /content -->
+
+			<div data-role="footer">
+				<a href="#" data-rel="back" data-role="button">Cancelar</a>
+				<!-- <a href="#" id="btnCrearNovaPartida" data-role="button" >Crear nova partida</a> -->
+				<input id="btnCrearNovaPartida" type="submit" value="Crear nova partida"/>
+			</div><!-- /footer -->
+	
+		</form>
+	</div><!-- /page -->
+
+
+
+
+
+	<!-- pagina TARGETA -->
+	<div data-role="page" id="pagina_targeta" data-position="inline" data-theme="a">
+
+		<div data-role="header" data-position="fixed">
+			
+			<a href="#" data-role="button" id="btnTargetaSortir" data-icon="arrow-l" data-transition="slide" data-direction="reverse" class="ui-btn-left">Partits</a>
+			<h1>TARGETA</h1>
+			
+		</div><!-- /header -->
+
+		<div data-role="main" class="ui-content">
+
+			<table id="taula_capsaleraTargeta" class="cssTaulesCapsalera">
+				<tbody></tbody>
+			</table>
+
+			<table id="taula_targeta" class="ui-responsive ui-shadow">
+				<thead>
+					<tr>
+					<th>Forat</th><th colspan="2">Par</th><th colspan="2">Cops</th><th>+ / -</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+
+		</div><!-- /content -->
+
+		<div data-role="footer" data-position="fixed">
+			<table id="taulaSumes">
+				<thead>
+					<tr>
+						<!-- <th></th> -->
+						<th>Par</th>
+						<th># Cops</th>
+						<th>Dif</th>
+					</tr>
+				</thead>
+				<tbody>	
+					<tr>
+						<!-- <td>Totals</td> -->
+						<td id="sumaPar"></td>
+						<td id="sumaCops"></td>
+						<td id="sumaDiferencia"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div><!-- /footer -->
+	</div><!-- /page -->
+
+
+
+
+
+
+	<!-- pagina HISTORIC COPS FORAT -->
+	<div data-role="page" id="pagina_HistoricCopsForat" data-theme="a">
+
+		<div data-role="header">
+			<a href="#" data-rel="back" data-role="button" data-icon="check">Ok</a>
+			<h1>Historic forat</h1>
+		</div><!-- /header -->
+
+		<div data-role="main" class="ui-content">
+			<p>Forat: <span id="forat"></span></p>
+
+			<table id="taulaHistoricForat">
+				<thead>
+					<tr><th>Data</th><th>Par</th><th>Cops</th><th>Dif</th></tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</div><!-- /content -->
+
+
+	</div><!-- /page -->
+
+
+
+
+
+
+
+
+	<!-- pagina INSTRUCCIONS -->
+	<div data-role="page" id="pagina_instruccions" data-position="inline" data-theme="a">
+
+		<div data-role="header" data-position="fixed">
+			
+			<a href="#pagina_principal" data-role="button" data-icon="arrow-l" class="ui-btn-left">tornar</a>
+			<h1>INSTRUCCIONS</h1>
+			
+		</div><!-- /header -->
+
+		<div data-role="main" class="ui-content">
+
+			<h2>A TENIR EN COMPTE</h2>
+			
+			<h4>pantalla CAMPS</h4>
+			<p>A la pantalla dels CAMPS hi ha la possibilitat d'informar el par de cada forat d'un camp (fent boto EDITAR o bé també dona la possiblitat al CREAR NOU CAMP). Quan es fa una nova partida, trasllada el par de cada forat (previament informat a la pantalla CAMPS) a la partida que es crea. Aquesta informacio del par de cada forat pot ser modificada a la pantalla TARGETA de la partida i solsament afectarà a aquesta partida.</p>
+			<br/>
+
+			<h4>pantalla PARTIDES</h4>
+			<p>Columna "# Partit": es un comptador de partits per dia i camp.
+			<br/>
+
+			<h4>pantalla TARGETA</h4>
+			<p>En el peu de la pantalla TARGETA, a mesura que anem informant els cops de cada forat, es van fent les sumes de tots els cops, dels pars dels forats aixi com la suma de les diferencies. Si hi ha forats que encara estan pendents de jugar (es a dir, el valor dels cops de cada forat es 0) el valor del par no es te en compte al fer la suma corresponent.</p>
+			<p>Si cliques la cel·la on hi ha el nº de forat, mostra pantalla amb l'historic de cops d'aquell forat.
+
+		</div><!-- /content -->
+
+		<div data-role="footer" data-position="fixed">
+		</div><!-- /footer -->
+	</div><!-- /page -->
+
+
+
+
+</body>
+</html>

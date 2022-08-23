@@ -1,0 +1,6 @@
+index.html
+js\model.js
+js\principal.js
+css\comu.css
+css\tablets.css
+css\smartphones.css

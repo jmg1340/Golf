@@ -1,0 +1,40 @@
+*{
+
+}
+
+
+
+
+table{
+	border-collapse: collapse;
+	margin-bottom: 10px;
+	width: 100%;
+
+}
+
+
+table tr{
+	border-bottom: 1px dashed grey;
+}
+
+
+table td{
+	/*border: 1px solid black;*/
+}
+
+table th{
+	/*border: 1px solid gray;*/
+	color: black;
+	background-color: darkgrey;
+	font-weight: bolder;
+	padding: 5;
+}
+
+table tr:nth-child(even){
+	background: white;
+}
+
+table tr:nth-child(odd){
+	background: #F7F6F6;
+}
+
